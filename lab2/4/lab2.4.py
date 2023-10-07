@@ -1,3 +1,8 @@
+#результат работы
+# Веса после обучения для сети с одним нейроном:
+# Веса нейрона: [0.14566868 0.09235316 0.05162406]
+# Смещение (bias): 0.09366126555732911
+# ошибка биг, мейби даже хуге
 from PIL import Image
 import numpy as np
 from neural_network import  create_neural_network, train_neural_network, split_data, Neuron
@@ -5,6 +10,10 @@ from neural_network import  create_neural_network, train_neural_network, split_d
 image = Image.open('kotik.jpg')
 
 image_array = np.array(image)
+
+print(image_array.shape)
+
+print(image_array)
 
 target_color = [10, 106, 69]
 

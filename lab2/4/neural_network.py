@@ -51,6 +51,19 @@ class Neuron:
             self.weights += learning_rate * error * x
             self.bias += learning_rate * error
 
+    def update_weights_backprop(self, x, y, learning_rate):
+        x = np.array(x)
+        prediction = self.predict(x)
+        error = y - prediction
+
+        # Обновление весов с использованием метода обратного распространения ошибки
+        self.weights += learning_rate * error * x
+        self.bias += learning_rate * error
+
+    def train(self, inputs, target, learning_rate):
+        # Обучение нейрона
+        self.update_weights_backprop(inputs, target, learning_rate)
+
     @staticmethod
     def calculate_mse_for_network(neural_net, test_data):
         total_error = 0
@@ -85,10 +98,32 @@ def train_neural_network(neural_net, training_set, learning_rate, epochs):
         for inputs, target in training_set:
             predictions = [neuron.predict(inputs) for neuron in neural_net.neurons]
 
-            errors = [target - prediction for target, prediction in zip(target, predictions)]
-            total_loss += sum([error ** 2 for error in errors])
+            errors = np.array([target - prediction for target, prediction in zip([target], predictions)])
+            total_loss += 1/2 * np.sum(errors ** 2)
+
+            for neuron, error, input_value in zip(neural_net.neurons, errors, inputs):
+                neuron.train(input_value, error, learning_rate)
+
+    # Выводим среднеквадратичную ошибку после обучения
+    mse = total_loss / len(training_set)
+    print(f"Mean Squared Error: {mse}")
 
 
+def evaluate_neural_network(neural_net, test_data):
+    correct_predictions = 0
+    total_samples = len(test_data)
+
+    for inputs, target in test_data:
+        predictions = [neuron.predict(inputs) for neuron in neural_net.neurons]
+        predicted_class = 1 if np.mean(predictions) > 0.5 else 0  # Пороговое значение для бинарной классификации
+
+        if predicted_class == target:
+            correct_predictions += 1
+        # else:
+        #     print(f"pred = ({predictions}) = target = ({target})")
+
+    accuracy = correct_predictions / total_samples
+    print(f"Accuracy: {accuracy * 100:.2f}%")
 
 def split_data(data, train_fraction):
     num_samples = len(data)

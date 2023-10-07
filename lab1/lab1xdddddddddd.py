@@ -6,8 +6,8 @@ from sklearn.naive_bayes import BernoulliNB
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import mean_squared_error
 
-pathNeg = "D:/Задания/3 курс/python/машин. обучение/lab1/data/movie/neg"
-pathPos = "D:/Задания/3 курс/python/машин. обучение/lab1/data/movie/pos"
+pathNeg = "C:/Users/Hetsu/Desktop/Python/machine-learning/lab1/data/data/movie/neg"
+pathPos = "C:/Users/Hetsu/Desktop/Python/machine-learning/lab1/data/data/movie/pos"
 
 def read_files_from_folder(folder_path):
     texts = []
