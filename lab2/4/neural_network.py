@@ -14,28 +14,11 @@ def plot_3d_graph(x1, x2, y, title, color='b'):
     plt.show()
 
 
-class DataGenerator:
-    @staticmethod
-    def generate_data(filename):
-        data = {'x1': list(range(1, 101)),
-                'x2': list(range(100, 0, -1))}
-        data['Y'] = [x1 * 3 + x2 * 8 for x1, x2 in zip(data['x1'], data['x2'])]
-        df = pd.DataFrame(data)
-        df.to_csv(filename, index=False)
-
-    @staticmethod
-    def add_noise(filename, noise_std):
-        data = pd.read_csv(filename)
-        noise = np.random.normal(0, noise_std, len(data))
-        data['Y'] += noise
-        data.to_csv(filename, index=False)
-
-
 class Neuron:
     def __init__(self, num_inputs):
-        self.weights = np.random.uniform(0.001, 0.2, num_inputs)
-        self.bias = np.random.uniform(0.001, 0.2)
-        self.accuracy = 0.1
+        self.weights = np.random.uniform(876, 876, num_inputs)
+        self.bias = np.random.uniform(0.000001, 0.000002)
+        self.accuracy = 0.00001
 
     def predict(self, x):
         summator = np.dot(x, self.weights) + self.bias
