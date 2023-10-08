@@ -46,7 +46,7 @@ num_inputs_per_neuron = 3  # Входы: R, G, B
 num_neurons = 1  # Один нейрон, так как у нас бинарная классификация
 
 neural_net = create_neural_network(num_neurons, num_inputs_per_neuron)
-train_neural_network(neural_net, train_data, learning_rate=0.00001, epochs=10)
+train_neural_network(neural_net, train_data, learning_rate=0.00001, epochs=1)
 
 # Используйте эту функцию после обучения нейронной сети
 evaluate_neural_network(neural_net, test_data)
