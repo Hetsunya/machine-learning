@@ -1,8 +1,7 @@
 from PIL import Image
 import numpy as np
 import pandas as pd
-from neural_network import  create_neural_network, train_neural_network, split_data, Neuron, evaluate_neural_network
-
+from neural_network import create_neural_network, train_neural_network, split_data, Neuron, evaluate_neural_network
 
 # def get_errors(neural_net, test_data):
 #     errors = []
@@ -21,11 +20,13 @@ image = Image.open('kotik.jpg')
 pixel_colors = np.array(image)
 
 # Шаг 2: Выбор цвета, который вы хотите выделить, и выделение соответствующих участков
-target_color = np.array([10, 106, 69])
+target_color = np.array([242, 158, 194])  # 10, 106, 69
 tolerance = 40
+
 
 def is_target_color(color):
     return np.all(np.abs(color - target_color) < tolerance)
+
 
 mask_target_color = np.array([[is_target_color(color) for color in row] for row in pixel_colors])
 pixels_with_target_color = pixel_colors[mask_target_color]
@@ -59,7 +60,6 @@ shuffled_training_data = training_data.sample(frac=1).reset_index(drop=True)
 print(training_data)
 print(shuffled_training_data)
 
-
 # Нормализуем данные
 shuffled_training_data[['R', 'G', 'B']] = training_data[['R', 'G', 'B']] / 255.0
 
@@ -84,12 +84,10 @@ evaluate_neural_network(neural_net, train_data)
 
 train_neural_network(neural_net, train_data, learning_rate=0.00001, epochs=10)
 
-
 print(neural_net.neurons[0].get_weights())
 
 evaluate_neural_network(neural_net, test_data)
 evaluate_neural_network(neural_net, train_data)
-
 
 # print(1 in get_errors(neural_net, test_data))
 #
