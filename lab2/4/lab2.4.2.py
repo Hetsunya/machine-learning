@@ -82,7 +82,7 @@ print(neural_net.neurons[0].get_weights())
 evaluate_neural_network(neural_net, test_data)
 evaluate_neural_network(neural_net, train_data)
 
-train_neural_network(neural_net, train_data, learning_rate=0.00001, epochs=10)
+train_neural_network(neural_net, train_data, learning_rate=0.001, epochs=10)
 
 print(neural_net.neurons[0].get_weights())
 
