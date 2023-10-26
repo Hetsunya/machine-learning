@@ -5,6 +5,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 
+
 # Шаг 12: Загрузка данных
 # Указываем тип для избежания предупреждений о смешанных типах
 dtype = {'CancellationCode': str}
@@ -77,3 +78,6 @@ print(f'Количество признаков после преобразов�
 
 # Шаг 16: Разбиение выборки
 X_train, X_test, y_train, y_test = train_test_split(X_transformed, y, test_size=0.3, random_state=42)
+
+
+
